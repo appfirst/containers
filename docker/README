@@ -1,0 +1,28 @@
+# build Dockerfile
+
+./build_docker_file.sh
+
+arguments:
+
+--name=<value>                  - image name (by default appfirst_image)
+--arch=<value>                  - AppFirst package architecture (by default x86_64)
+--base_image=<value>            - base image (by default ubuntu:latest)
+--docker_file_path=<value>      - Dockerfile path (by default .)
+--tid=<value>                   - tenant ID (by default 1)
+--supervisord_cfg_path=<value>  - supevisord config files path (by default /etc/supervisor/conf.d)
+--supervisord_cfg=<value>       - list of supevisord config files (by default appfirst.conf)
+
+# build image
+
+docker build -t appfirst_image .
+
+# run a command in a new container
+
+docker run -i -t appfirst_image /startup.sh --tid=11476
+
+arguments:
+
+--tid=<value>                   - tenant ID
+--custom-cmd=<value>            - custom process
+--custom-env=<value>            - enviroment for custom process
+--custom-priority=<value>       - priority for custom process
